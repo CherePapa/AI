@@ -1,5 +1,6 @@
 import argparse
 import torch
+import sys
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 from model import SimpleCNN
@@ -20,7 +21,7 @@ def main():
 
     # Определение преобразований для данных
     transform = transforms.Compose([
-        transforms.Resize((28, 28)),
+        transforms.Resize((128, 128)),
         transforms.ToTensor(),
         transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
     ])
@@ -37,17 +38,17 @@ def main():
     num_classes = len(dataset.classes)
     model = SimpleCNN(num_classes=num_classes)
 
-    if args.mode == 'train':
-        # Обучение модели
-        criterion = torch.nn.CrossEntropyLoss() # функция измерение разлиичий между предсказаниями нейронки и ее фактическими целевыми значениями
-        optimizer = torch.optim.Adam(model.parameters(), lr=0.001) # вариант оптимизации для повышения скорости обработки данных при тестировании нейронки
-        train_model(model, data_loader, criterion, optimizer)
-    else:
-        # Тестирование модели
-        model.load_state_dict(torch.load('model.pth'))
-        model.eval()
-        test_model(model, data_loader)
+    match args.mode:
+        case 'train':
+            # Обучение модели
+            criterion = torch.nn.CrossEntropyLoss() # функция измерение разлиичий между предсказаниями нейронки и ее фактическими целевыми значениями
+            optimizer = torch.optim.Adam(model.parameters(), lr=0.001) # вариант оптимизации для повышения скорости обработки данных при тестировании нейронки
+            train_model(model, data_loader, criterion, optimizer)
+        case 'test':
+            # Тестирование модели
+            model.load_state_dict(torch.load('model.pth'))
+            model.eval()
+            test_model(model, data_loader)
 
 if __name__ == "__main__":
-    import sys
     main()
