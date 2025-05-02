@@ -39,8 +39,8 @@ def main():
 
     if args.mode == 'train':
         # Обучение модели
-        criterion = torch.nn.CrossEntropyLoss()
-        optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+        criterion = torch.nn.CrossEntropyLoss() #функция измерение разлиичий между предсказанами ии и фактически целивыми значениями
+        optimizer = torch.optim.Adam(model.parameters(), lr=0.001) #вариант оптимизации для повышения оптимизации ии
         train_model(model, data_loader, criterion, optimizer)
     else:
         # Тестирование модели
