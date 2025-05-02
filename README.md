@@ -60,4 +60,8 @@ Average Accuracy over 3 iterations: 94.50%
 Для запуска проекта необходимо установить следующие библиотеки:
 
 ```bash
-pip install torch torchvision matplotlib tqdm
+pip install torch 
+pip install torchvision 
+pip install matplotlib 
+pip install tqdm
+
