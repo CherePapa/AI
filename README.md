@@ -32,16 +32,28 @@
 
 Когда вы запускаете обучение модели с помощью команды `python main.py train`, вы увидите следующий вывод:
 
-```plaintext
+plaintext
 Epoch [1/5], Batch [10/32], Loss: 1.2345
 Epoch [1/5] completed. Loss: 1.2345
 Epoch [2/5], Batch [10/32], Loss: 0.9876
 Epoch [2/5] completed. Loss: 0.9876
-...
+
 Epoch [5/5] completed. Loss: 0.5678
 Model saved as model.pth
 
+## Пример вывода при тестировании
 
+Когда вы запускаете тестирование модели с помощью команды `python main.py train`, вы увидите следующий вывод:
+
+Iteration 1/3 - Accuracy: 95.00%
+Examples from iteration 1:
+  Image 1: Predicted = 3, True = 3
+  Image 2: Predicted = 1, True = 1
+  Image 3: Predicted = 0, True = 2
+  ...
+Iteration 2/3 - Accuracy: 94.50%
+...
+Average Accuracy over 3 iterations: 94.50%
 
 ## Установка зависимостей
 
